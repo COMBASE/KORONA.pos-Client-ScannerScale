@@ -43,16 +43,12 @@ public class ScaleConnector
 		int b = -1;
 
 		StringBuilder buffer = new StringBuilder();
-		int skip = 0;
 		int readCode = 0;
 		int readScaleData = 0;
 		boolean scale = false;
 		boolean scan = false;
 		while ((b = fr.read()) != -1)
 		{
-			if (skip-- > 0)
-				continue;
-
 			char c = (char)b;
 
 
@@ -129,6 +125,7 @@ public class ScaleConnector
 
 		}
 
+		System.err.println("stream closed!!!");
 		fr.close();
 	}
 
@@ -155,6 +152,7 @@ public class ScaleConnector
 			fw.write(Integer.valueOf("31", 16));
 			fw.write(Integer.valueOf("34", 16));
 			fw.write(Integer.valueOf("0D", 16));
+			//fw.write(Integer.valueOf("0A", 16));
 			fw.flush();
 			fw.close();
 		}
@@ -169,6 +167,7 @@ public class ScaleConnector
 		new Thread(new Runnable()
 		{
 
+			@Override
 			public void run()
 			{
 				try
