@@ -53,6 +53,15 @@ public class ScaleConnector
 
 
 			System.out.println("char: " + c);
+			
+			if (c == 'S')
+			{
+				readCode = 3;
+				System.out.println("switch into command mode.");
+				buffer = new StringBuilder();
+				continue;
+			}
+			
 
 			if (readCode > 0)
 			{
@@ -118,10 +127,7 @@ public class ScaleConnector
 			}
 
 
-			if (c == 'S')
-			{
-				readCode = 3;
-			}
+
 
 		}
 
